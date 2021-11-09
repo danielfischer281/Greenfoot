@@ -7,25 +7,42 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @version (a version number or a date)
  */
 public class Player extends Actor{
-    /**
-     * Act - do whatever the Player wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    private int dVel = 0;
+    // gravity constant
     private int gravity = 2;
-    private int jumpHeigt = -10;
+    // Jump Hight of the player
+    private int jumpHeigt = -40;
+    
+    // overall Velocity
+    private int dVel = 0;
     
     public void act(){
-        // Add your action code here.
+        gameOver();
+        jump();
+        // Sets position of the player
         setLocation(getX(), getY() + dVel);
-        if(Greenfoot.isKeyDown("w")){
-            dVel = jumpHeigt;
-        }
         dVel = dVel + gravity;
-        if(isTouching(Obstacle1.class) || isTouching(Obstacle2.class) || isTouching(Enemy.class)){
+    }
+    // checks if player is touching an obstacle or fell in pit
+    public void gameOver(){
+        if(isTouching(Obstacle1.class) || isTouching(Obstacle2.class) || isTouching(Enemy.class) || isAtEdge()){
             GameOver gameOverScreen = new GameOver();
             getWorld().addObject(gameOverScreen, getWorld().getWidth()/2, getWorld().getHeight()/2);
             Greenfoot.stop();
+        }
+    }
+    // checks if player is on the ground, jump action
+    public void jump(){
+       if(isTouching(Ground.class)){
+            dVel = 0;
+            if(Greenfoot.isKeyDown("w")){
+                dVel = jumpHeigt;
+            }
+        } 
+    }
+    // Code only used for debugging
+    public void debug(){
+        if(Greenfoot.isKeyDown("d")){
+            move(5);
         }
     }
 }
