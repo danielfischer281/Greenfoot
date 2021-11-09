@@ -34,7 +34,7 @@ public class Player extends Actor{
     public void jump(){
        if(isTouching(Ground.class)){
             dVel = 0;
-            if(Greenfoot.isKeyDown("w")){
+            if(Greenfoot.isKeyDown("w") || Greenfoot.isKeyDown("space")){
                 dVel = jumpHeigt;
             }
         } 

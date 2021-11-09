@@ -12,15 +12,15 @@ public class MyWorld extends World {
     private Ground groundObj;
     
     // Velocity of the game, use for all Actors
-    public static int gameVel = 5;
-    // def. of how fast the velocity incrises
-    private int incVel = 100;
+    public static int gameVel = 7;
+    // def. of how fast the velocity increases
+    private int incVel = 200;
     // def. length of Pit, creation of ground objects are skipped
     private int lengthOfPit = 30;
     // def. how likely it is that a pit is created (higher number = higher chance)
     private int chanceOfPit = 150;
     // def. how likely it is that a obstacle is created (higher number = lower chance)
-    private int chanceOfObstacle = 100;
+    private int chanceOfObstacle = 200;
     
     // Counter skips ground for creating pits
     private int counterSkip = 0;
@@ -46,12 +46,15 @@ public class MyWorld extends World {
     // Creates Player
     public void createPlayer(){
         Player player = new Player();
-        addObject(player, 100, 550);
+        addObject(player, 100, 300);
     }
     // Act method 
     public void act(){
         if(counter%incVel == 0){
+            // Increase velocity
             gameVel++;
+            // Decrease Length of pits
+            lengthOfPit--;
         }
         buildMap();
         counter++;
@@ -67,12 +70,12 @@ public class MyWorld extends World {
             }
             // Create obstacle Object
             if(Greenfoot.getRandomNumber(chanceOfObstacle) == 1) {
-                if(Greenfoot.getRandomNumber(2) == 1){
+                if(Greenfoot.getRandomNumber(3) == 1){
                     Obstacle1 obstacle1 = new Obstacle1();
-                    addObject(obstacle1, 1200, 500);
+                    addObject(obstacle1, 1200, 200);
                 }else{
                     Obstacle2 obstacle2 = new Obstacle2();
-                    addObject(obstacle2, 1200, 575);
+                    addObject(obstacle2, 1200, 530);
                 }
             }
         }else{
