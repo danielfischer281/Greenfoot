@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Player
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Player\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Player\ is\ controlled\ by\ "w"\ or\ "space".\r\n\ Game\ is\ over\ when\ player\ fell\ or\ ran\ into\ an\ obstacle/\ enemy\r\n\ \r\n\ @author\ Danie\ Fischer\r\n\ @version\ 1.0\r\n
 comment1.params=
 comment1.target=void\ act()
 comment2.params=

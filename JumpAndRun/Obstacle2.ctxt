@@ -1,7 +1,6 @@
 #BlueJ class context
 comment0.target=Obstacle2
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Obstacle2\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Obstacle2\ implemented\ by\ MyWorld.\r\n\ When\ an\ instance\ of\ Obstacle2\ hits\ the\ player,\ the\ game\ is\ over.\r\n\ \r\n\ @author\ Daniel\ Fischer\r\n\ @version\ 1.0\r\n
 comment1.params=
 comment1.target=void\ act()
-comment1.text=\r\n\ Act\ -\ do\ whatever\ the\ Obstacle2\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
 numComments=2

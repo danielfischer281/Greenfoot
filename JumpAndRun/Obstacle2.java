@@ -1,20 +1,16 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Obstacle2 here.
+ * Obstacle2 implemented by MyWorld.
+ * When an instance of Obstacle2 hits the player, the game is over.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Daniel Fischer
+ * @version 1.0
  */
-public class Obstacle2 extends Actor
-{
-    /**
-     * Act - do whatever the Obstacle2 wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act()
-    {
-        // Add your action code here.
+
+public class Obstacle2 extends Actor {
+    public void act() {
+        // setLocation from static gameVel
         setLocation(getX() - MyWorld.gameVel, getY());
     }
 }

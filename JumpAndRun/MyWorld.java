@@ -1,11 +1,12 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class MyWorld here.
+ * My World creates all objects.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Daniel Fischer
+ * @version 1.0
  */
+
 public class MyWorld extends World {    
     // Velocity of the game, use for all Actors
     public static int gameVel = 12;
@@ -21,6 +22,7 @@ public class MyWorld extends World {
     private int lengthOfPause = 40;
     
     private Ground groundObj;
+    // Pause
     private boolean mBreak = false;
     // Counter skips ground for creating pits
     private int counterSkip;
@@ -50,7 +52,7 @@ public class MyWorld extends World {
             groundObj = ground;
         } 
     }
-    // Creates Player
+    // Creates player
     public void createPlayer(){
         Player player = new Player();
         addObject(player, 100, 300);
@@ -60,7 +62,7 @@ public class MyWorld extends World {
         if(counter%incVel == 0){
             // Increase velocity
             gameVel++;
-            // Decrease Length of pits
+            // Decrease length of pits
             lengthOfPit--;
         }
         buildMap();
@@ -69,16 +71,16 @@ public class MyWorld extends World {
         counter++;
         points = counter + countObstacle*100;
     }
-    // Builds the dynamic ground, Obstacle, Enemy
+    // Builds the dynamic ground, obstacle, enemy
     public void buildMap(){
         if(!(Greenfoot.getRandomNumber(chanceOfPit) == 1) && counterSkip == 0 || mBreak){
-            // Create ground Object
+            // Create ground object
             if(groundObj.getX() < 1150){
                 Ground ground = new Ground();
                 addObject(ground, 1200, 649); 
                 groundObj = ground;
             }
-            // Create obstacle Object
+            // Create obstacle object
             if(Greenfoot.getRandomNumber(chanceOfObstacle) == 1  && !(mBreak)) {
                 if(Greenfoot.getRandomNumber(2) == 1){
                     Obstacle1 obstacle1 = new Obstacle1();
@@ -95,7 +97,7 @@ public class MyWorld extends World {
                 counterPause = 0;
             }
         }else{
-            // Skipp ground, pits are created
+            // Skip ground, pits are created
             counterSkip++; 
             if(counterSkip == lengthOfPit){
                 counterSkip = 0;
@@ -104,12 +106,12 @@ public class MyWorld extends World {
             }
         }
     }
-    // Creates the Score
+    // Creates score
     public void addScore(){
         CounterScore score = new CounterScore();
         addObject(score, 1100, 50);
     }
-    // Makes a Pause after an obstacle was build to prevent colition
+    // Add pause after an obstacle was built to prevent collision
     public void makeABreak(){
         if(mBreak) {
            if(counterPause == lengthOfPause){

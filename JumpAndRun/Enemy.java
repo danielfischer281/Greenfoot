@@ -1,20 +1,16 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Enemy here.
+ * Enemy implemented by MyWorld.
+ * When an instance of Enemy hits the player, the game is over.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Daniel Fischer
+ * @version 1.0
  */
-public class Enemy extends Actor
-{
-    /**
-     * Act - do whatever the Enemy wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act()
-    {
-        // Add your action code here.
+
+public class Enemy extends Actor {
+    public void act(){   
+        // setLocation from static gameVel
         setLocation(getX() - MyWorld.gameVel, getY());
     }
 }

@@ -1,17 +1,15 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class CounterScore here.
+ * Creates display for game score
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Daniel Fischer
+ * @version 1.0
  */
-public class CounterScore extends Actor{
-    /**
-     * Act - do whatever the CounterScore wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+
+public class CounterScore extends Actor {
     public void act(){
+        // Show points
         setImage(new GreenfootImage("Score : " + MyWorld.points, 24, Color.GREEN, Color.BLACK));
     }
 }

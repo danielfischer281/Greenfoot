@@ -1,11 +1,13 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Player here.
+ * Player is controlled by "w" or "space".
+ * Game is over when player fell or ran into an obstacle/ enemy
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Danie Fischer
+ * @version 1.0
  */
+
 public class Player extends Actor{
     // gravity constant
     private int gravity = 2;
