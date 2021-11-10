@@ -1,4 +1,3 @@
-
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
@@ -7,25 +6,33 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class MyWorld extends World {
-    
-    private Ground groundObj;
-    
+public class MyWorld extends World {    
     // Velocity of the game, use for all Actors
-    public static int gameVel = 7;
+    public static int gameVel = 12;
     // def. of how fast the velocity increases
     private int incVel = 200;
     // def. length of Pit, creation of ground objects are skipped
     private int lengthOfPit = 30;
-    // def. how likely it is that a pit is created (higher number = higher chance)
-    private int chanceOfPit = 150;
+    // def. how likely it is that a pit is created (higher number = lower chance)
+    private int chanceOfPit = 200;
     // def. how likely it is that a obstacle is created (higher number = lower chance)
-    private int chanceOfObstacle = 200;
+    private int chanceOfObstacle = 60;
+    // def. length of Pause after a obstacle was built
+    private int lengthOfPause = 40;
     
+    private Ground groundObj;
+    private boolean mBreak = false;
     // Counter skips ground for creating pits
-    private int counterSkip = 0;
-    // Counter Points
-    private int counter = 0;
+    private int counterSkip;
+    // Counter pauses when obstacle was built
+    private int counterPause;
+    // Counter Time
+    private int counter;
+    // Counts number of generated obstacle
+    private int countObstacle;
+    // Points
+    public static int points;
+    
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -57,11 +64,14 @@ public class MyWorld extends World {
             lengthOfPit--;
         }
         buildMap();
+        addScore();
+        makeABreak();
         counter++;
+        points = counter + countObstacle*100;
     }
     // Builds the dynamic ground, Obstacle, Enemy
     public void buildMap(){
-        if(!(Greenfoot.getRandomNumber(chanceOfPit) == 1) && counterSkip == 0){
+        if(!(Greenfoot.getRandomNumber(chanceOfPit) == 1) && counterSkip == 0 || mBreak){
             // Create ground Object
             if(groundObj.getX() < 1150){
                 Ground ground = new Ground();
@@ -69,21 +79,44 @@ public class MyWorld extends World {
                 groundObj = ground;
             }
             // Create obstacle Object
-            if(Greenfoot.getRandomNumber(chanceOfObstacle) == 1) {
-                if(Greenfoot.getRandomNumber(3) == 1){
+            if(Greenfoot.getRandomNumber(chanceOfObstacle) == 1  && !(mBreak)) {
+                if(Greenfoot.getRandomNumber(2) == 1){
                     Obstacle1 obstacle1 = new Obstacle1();
                     addObject(obstacle1, 1200, 200);
-                }else{
+                }else if(Greenfoot.getRandomNumber(2) == 1){
                     Obstacle2 obstacle2 = new Obstacle2();
-                    addObject(obstacle2, 1200, 530);
+                    addObject(obstacle2, 1200, 532);
+                }else{
+                    Enemy enemy = new Enemy();
+                    addObject(enemy, 1200, 490);
                 }
+                countObstacle++;
+                mBreak = true;
+                counterPause = 0;
             }
         }else{
             // Skipp ground, pits are created
             counterSkip++; 
             if(counterSkip == lengthOfPit){
                 counterSkip = 0;
+                mBreak = true;
+                counterPause = 0;
             }
+        }
+    }
+    // Creates the Score
+    public void addScore(){
+        CounterScore score = new CounterScore();
+        addObject(score, 1100, 50);
+    }
+    // Makes a Pause after an obstacle was build to prevent colition
+    public void makeABreak(){
+        if(mBreak) {
+           if(counterPause == lengthOfPause){
+               mBreak = false;
+               counterPause = 0;
+           }
+           counterPause++;
         }
     }
 }

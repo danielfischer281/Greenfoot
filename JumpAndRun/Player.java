@@ -10,7 +10,7 @@ public class Player extends Actor{
     // gravity constant
     private int gravity = 2;
     // Jump Hight of the player
-    private int jumpHeigt = -40;
+    private int jumpHeigt = -38;
     
     // overall Velocity
     private int dVel = 0;
